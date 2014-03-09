@@ -1,5 +1,5 @@
 __author__ = 'ameadows'
-#Based on custom logger found in etlUnit ().
+#Based on custom logger found in etlUnit.
 import logging
 
 #Logging level for Testing.
