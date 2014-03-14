@@ -9,7 +9,6 @@ import wx
 
 from gui.mainFrame import MainFrame
 
-
 def show_splash():
     global splash
     bitmap = wx.Image(name='./resources/images/dbnexusSplash.png').ConvertToBitmap()
@@ -23,7 +22,7 @@ def main():
     splash = show_splash()
 
     # do processing/initialization here and create main window
-    frame = MainFrame(None, 'dbNexus')
+    frame = MainFrame(None, title='dbNexus')
     frame.Show()
 
     splash.Destroy()

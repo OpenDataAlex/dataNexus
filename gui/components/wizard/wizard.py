@@ -39,8 +39,8 @@ class Wizard(wx.wizard.Wizard):
 
         self.pages.append(page)
 
-    def run(self):
-        self.RunWizard(self.pages[0])
+    def run(self, page):
+        self.RunWizard(page)
 
     def on_page_changed(self, evt):
             '''
@@ -66,6 +66,7 @@ class Wizard(wx.wizard.Wizard):
             dir = "backward"
 
         page = evt.GetPage()
+
         print "page_changing: %s, %s\n" % (dir, page.__class__)
 
     def on_cancel(self, evt):

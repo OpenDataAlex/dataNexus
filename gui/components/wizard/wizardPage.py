@@ -7,14 +7,14 @@ import wx.wizard as wizmod
 padding = 5
 
 
-class WizardPage(wizmod.PyWizardPage):
+class WizardPage(wizmod.WizardPageSimple):
     '''
     An extended panel obj with a few methods to keep track of its siblings.
     '''
 
     def __init__(self, parent, title):
-        wx.wizard.PyWizardPage.__init__(self, parent)
-        self.next = self.prev = None
+        wx.wizard.WizardPageSimple.__init__(self, parent)
+
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         title = wx.StaticText(self, -1, title)
         title.SetFont(wx.Font(18, wx.SWISS, wx.NORMAL, wx.BOLD))

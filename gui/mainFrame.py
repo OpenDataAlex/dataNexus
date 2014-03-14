@@ -2,8 +2,7 @@ __author__ = 'Alex Meadows'
 
 import wx
 
-import gui.wizard.wizard
-import gui.wizardPage as page
+import repository.newRepositoryWizard as new_repo_wizard
 
 
 objectList = {
@@ -19,13 +18,18 @@ class MainFrame(wx.Frame):
     """
     The Main window for dbNexus.  Contains all user interface to the tool.
     """
-    def __init__(self, parent, title):
+    def __init__(self, parent, id=wx.ID_ANY, title="",
+                 pos=wx.DefaultPosition, size=wx.DefaultSize,
+                 style=wx.DEFAULT_FRAME_STYLE,
+                 name="MainFrame"):
+
+        super(MainFrame, self).__init__(parent, id, title,
+                                        pos, size, style, name)
+
+        #Attributes
+        self.panel = wx.Panel(self)
         self.dirname = ''
 
-        # A "-1" in the size parameter instructs wxWidgets to use the default size.
-        # In this case, we select 200px width and the default height.
-        wx.Frame.__init__(self, parent, title=title, size=(800, -1))
-        self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)
         self.CreateStatusBar() # A status bar at the bottom of the window.
 
         #Setting up the menu.
@@ -44,9 +48,9 @@ class MainFrame(wx.Frame):
 
         #Creating the menu bar
         menu_bar = wx.MenuBar()
-        menu_bar.Append(file_menu, "&File") # Adding the File menu
-        menu_bar.Append(repo_menu, "&Repository") #Adding the Repository menu
-        menu_bar.Append(about_menu, "&Help") # Adding the Help menu
+        menu_bar.Append(file_menu, "&File")  # Adding the File menu
+        menu_bar.Append(repo_menu, "&Repository")  # Adding the Repository menu
+        menu_bar.Append(about_menu, "&Help")  # Adding the Help menu
         self.SetMenuBar(menu_bar)
 
         # Set events
@@ -56,15 +60,6 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.on_new, menu_new)
         self.Bind(wx.EVT_MENU, self.on_new_repo, menu_new_repo)
 
-
-        #Use some sizers to see layout options
-        self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.control, 1, wx.EXPAND)
-
-        #Layout sizers
-        self.SetSizer(self.sizer)
-        self.SetAutoLayout(1)
-        self.sizer.Fit(self)
         self.Show()
 
     def on_about(self, e):
@@ -86,29 +81,19 @@ class MainFrame(wx.Frame):
         if dlg.ShowModal() == wx.ID_OK:
             self.dbObject = ''
 
-    def on_new_repo(self, e):
+    @staticmethod
+    def on_new_repo(self):
         '''
         Opens dialogue for creating a new dbNexus repository.
         '''
 
-        new_repo = gui.wizard.wizard.Wizard('Simple Wizard', img_filename='wiz.png')
-        page1 = page.WizardPage(new_repo, 'Page 1')
-        page1.add_stuff(wx.StaticText(page1, -1, 'Hola'))
+        repo_types = [
+            "Git",
+            "Subversion"
+        ]
 
-        page2 = page.WizardPage(new_repo, 'Page 2')
-        page2.add_stuff(wx.StaticText(page2, -1, 'Bonjour'))
+        new_repo_wizard.NewRepoWizard.create_new_repository_wizard()
 
-        page3 = page.WizardPage(new_repo, 'Page 3')
-        page3.add_stuff(wx.StaticText(page3, -1, 'Hiya'))
-
-        new_repo.add_page(page1)
-        new_repo.add_page(page2)
-        new_repo.add_page(page3)
-
-        wx.CallAfter(new_repo.SetSize(500, 500))
-
-        new_repo.run()
-        #new_repo.Destroy()
 
     def on_open(self, e):
         """
