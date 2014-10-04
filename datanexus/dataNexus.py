@@ -8,7 +8,7 @@ from utilities.settings_manager import SettingsManager
 
 
 def main():
-
+    return True
 
 if __name__ == '__main__':
     SettingsManager.first_run_test()
