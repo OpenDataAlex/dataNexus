@@ -1,0 +1,15 @@
+language: python
+python:
+    - "3.3"
+install:
+    - "pip install -r requirements.txt --use-mirrors"
+    - "pip install coverage"
+    - "pip install coveralls"
+script:
+    - "coverage run --source=datanexus setup.py test"
+    - 'tox'
+before_script:
+    - chmod +x /home/travis/build/OpenDataAlex/dataNexus/datanexus/dataNexus.py
+services:  mysql
+after_success:
+    coveralls

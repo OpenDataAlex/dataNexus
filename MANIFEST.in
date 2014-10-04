@@ -1,0 +1,9 @@
+include *.rst
+recursive-include docs *.rst
+recursive-include datanexus/samples *.*
+recursive-include datanexus/templates *.*
+recursive-include scripts *.*
+include CHANGES.txt
+include *.md
+include .datanexus-settings.yml
+include LICENSE

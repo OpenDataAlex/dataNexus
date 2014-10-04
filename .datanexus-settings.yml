@@ -1,0 +1,5 @@
+app_name: dataNexus
+logging_level: 20
+app_author: dataNexus
+settings_file:  properties.cfg
+connection_file: connections.cfg
