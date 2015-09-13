@@ -19,7 +19,7 @@ class YAMLParser():
         """
             Initialization of method to setup the logging.
         """
-        from .settings import etltest_config, console
+        from .custom_logging import etltest_config, console
 
         self.log = logging.getLogger(name="YAMLParser")
         self.log.setLevel(etltest_config['logging_level'])

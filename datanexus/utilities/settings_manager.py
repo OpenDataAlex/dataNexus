@@ -4,16 +4,16 @@ settingsManager handles building the standard directories used by etlTest,
 copies the default settings files, and building the array that stores all the parameters
 from the settings files.
 """
-__author__ = 'ameadows'
-
-
-import logging
 from configparser import ConfigParser
 from shutil import copyfile, copy2
 
 import re
 import os
 import appdirs
+
+__author__ = 'ameadows'
+
+#TODO:  Rewrite and simplify.  Need to remove old etltest settings code.
 
 
 class SettingsManager():
@@ -22,18 +22,18 @@ class SettingsManager():
     """
     def __init__(self):
         """
-            This method initializes the log for SettingsManager as well as sets some static variables for file paths.
+        This method initializes the log for SettingsManager as well as sets some static variables for file paths.
         """
-        from .settings import etltest_config, console
+        from .logging_setup import console
 
         self.log = logging.getLogger(name="SettingsManager")
         self.log.setLevel(etltest_config['logging_level'])
         self.log.addHandler(console)
-        self.log.debug("Settings imported: {0:s}".format(etltest_config))
-        self.app_name = etltest_config['app_name']
-        self.app_author = etltest_config['app_author']
-        self.data_dir = 'etltest/samples/data/'
-        self.test_dir = 'etltest/samples/test/'
+
+        self.app_name = __application__
+        self.app_author = __author__
+        self.data_dir = 'datanexus/samples/data/'
+        self.log_dir = 'datanexus/samples/log/'
         self.settings_file = etltest_config['settings_file']
         self.connection_file = etltest_config['connection_file']
         self.tools_file = etltest_config['tools_file']
