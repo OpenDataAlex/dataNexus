@@ -37,7 +37,7 @@ setup(
         'GitPython==1.0.1',
         'Jinja2==2.7.3',
         'MarkupSafe==0.23',
-        'Pygments==1.6',
+        'Pygments==2.7.4',
         'PyYAML==3.11',
         'Sphinx==1.2.3',
         'SQLAlchemy==0.9.7',
