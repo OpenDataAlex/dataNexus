@@ -34,7 +34,7 @@ setup(
         'configparser==3.5.0b1',
         'docutils==0.12',
         'ecdsa==0.11',
-        'GitPython==1.0.1',
+        'GitPython==3.1.30',
         'Jinja2==2.7.3',
         'MarkupSafe==0.23',
         'Pygments==1.6',
